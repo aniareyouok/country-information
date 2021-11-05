@@ -1,6 +1,7 @@
 @import url('https://fonts.googleapis.com/css2?family=Gochi+Hand&display=swap');
 
 h1{
+    /*google-font identified from image*/
     font-family: 'Gochi Hand', cursive;
     font-size: 50px;
     display: flex;
@@ -13,11 +14,19 @@ h1{
 
 .flags{
     max-height: 12px;
+    max-width: 12px;
 }
 
 ul{
+    margin: 50px;
     list-style: none;
+    /*columns*/
     columns: 3;
+    background-color: darkgray;
+    border: black solid 1px;
+    border-radius: 10px;
+    /*min width is to prevent formatting from overflowing*/
+    min-width: 925px;
 }
 
 li{

@@ -464,29 +464,33 @@ var _axios = require("axios");
 var _axiosDefault = parcelHelpers.interopDefault(_axios);
 console.log('Hallo daar!');
 async function getCountries() {
-    const countriesUnsorted = await _axiosDefault.default.get("https://restcountries.com/v2/all");
-    const countries = countriesUnsorted.data.sort((a, b)=>{
-        return a.population - b.population;
-    });
-    let ul = document.getElementById("countries");
-    console.log(countries);
-    let innerhtml = "";
-    for(let i = 0; i < countries.length; i++){
-        const country = countries[i];
-        //console.log("komt ik hier wel?");
-        //console.log(country);
-        const name = country.name;
-        const flag = country.flag;
-        const region = country.region;
-        const population = country.population;
-        console.log("name: " + name);
-        console.log("flag: " + flag);
-        console.log("population: " + population);
-        innerhtml += `<li> <span> <img class="flags" src="${flag}" alt="${name}">${namecolor(name, region)}</span> <br> has a population of: ${population}</li>`;
+    try {
+        //get and sort from api
+        const countriesUnsorted = await _axiosDefault.default.get("https://restcountries.com/v2/all");
+        const countries = countriesUnsorted.data.sort((a, b)=>{
+            return a.population - b.population;
+        });
+        //get html-element
+        let ul = document.getElementById("countries");
+        //build innerhtml
+        let innerhtml = "";
+        //sort out useful variables and plug them into innerhtml
+        for(let i = 0; i < countries.length; i++){
+            const country = countries[i];
+            const name = country.name;
+            const flag = country.flag;
+            const region = country.region;
+            const population = country.population;
+            innerhtml += `<li> <span> <img class="flags" src="${flag}" alt="${name}">${namecolor(name, region)}</span> <br> has a population of: ${population} people</li>`;
+        }
+        //put innerhtml on the page
+        ul.innerHTML = innerhtml;
+    } catch (e) {
+        console.log(e);
     }
-    ul.innerHTML = innerhtml;
 }
 function namecolor(name, region) {
+    //gives a name the color of the region it belongs to
     const colormapping = {
         Africa: "blue",
         Americas: "green",
