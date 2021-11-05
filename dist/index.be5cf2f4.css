@@ -1,5 +1,4 @@
-@import url('https://fonts.googleapis.com/css2?family=Gochi+Hand&display=swap');
-
+@import "https://fonts.googleapis.com/css2?family=Gochi+Hand&display=swap";
 h1{
     font-family: 'Gochi Hand', cursive;
     font-size: 50px;
@@ -23,3 +22,4 @@ ul{
 li{
     margin: 20px;
 }
+/*# sourceMappingURL=index.be5cf2f4.css.map */
